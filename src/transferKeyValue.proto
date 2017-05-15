@@ -1,0 +1,17 @@
+syntax = "proto3";
+package KeySender;
+
+option java_package = "kr.pe.absolju.KeySender";
+option java_outer_classname = "KeyValueProtos";
+
+message KeyInput {
+	int32 value = 1; //Value of 'KeyEvent.VK_~'
+	int32 wait = 2; //wait time(millisec)
+	bool press = 3; //if it turns to release, changed false.
+}
+
+message KeyData {
+	string senderid = 1; //confirm identity
+	bool macro = 2; //check single action or macro action
+	repeated KeyInput keyinput = 3;
+}
