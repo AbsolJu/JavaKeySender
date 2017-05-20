@@ -13,6 +13,7 @@ public class sendKeyValue {
 		
 		KeyData.Builder keydata = KeyData.newBuilder();
 		
+		//-전체데이터
 		keydata.setSenderid(senderid);
 		keydata.setMacro(false);
 		
@@ -23,13 +24,7 @@ public class sendKeyValue {
 		//--끝
 		
 		keydata.addKeyinput(keyinput);
-		
-		//--(임시 테스트. 파일 저장만 함)
-		/*
-		FileOutputStream output = new FileOutputStream("output.prbuf");
-		keydata.build().writeTo(output);
-		output.close();
-		*/
+		//-끝
 		
 		//클라이언트 파트(클라이언트에서 서버로 키 값 전달)
 		try {
