@@ -1,7 +1,10 @@
 package kr.pe.absolju.KeySender;
 
+
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.Label;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,15 +18,6 @@ public class AppUI {
 	final static Image iconGIF = Toolkit.getDefaultToolkit().getImage("img/icon2.gif");
 	
 	public static void Create() {
-		
-		final TrayIcon trayIcon = new TrayIcon(iconGIF, "JavaKeySender");
-		trayIcon.setImageAutoSize(true);
-		final SystemTray tray = SystemTray.getSystemTray();
-		try {
-            tray.add(trayIcon);
-        } catch (AWTException e) {
-            System.out.println("Error: Tray 아이콘 생성 중, TrayUI.TrayUI");
-        }
 		
 		JFrame frame = new JFrame();
 		frame.setTitle("JavaKeySender");

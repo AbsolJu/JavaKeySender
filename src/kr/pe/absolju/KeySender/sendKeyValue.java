@@ -37,7 +37,14 @@ public class sendKeyValue {
 		}
 	}
 	
-	public void multi() {
-		//내용 없음. 여러 키를 받아 한 번에 처리, 매크로?
+	public void multi(KeyData keydata) {
+		try {
+			Socket socket = new Socket("localhost", 8080);
+			DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+			keydata.writeTo(output);
+			socket.close();
+		} catch (IOException e) {
+			System.out.println("Error: KeyData 송신 중, sendKeyValue.multi");
+		}
 	}
 }
