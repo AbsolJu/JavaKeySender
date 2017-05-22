@@ -12,11 +12,23 @@ import javax.swing.JPanel;
 
 public class AppUI {
 	
+	final static Image iconGIF = Toolkit.getDefaultToolkit().getImage("img/icon2.gif");
+	
 	public static void Create() {
+		
+		final TrayIcon trayIcon = new TrayIcon(iconGIF, "JavaKeySender");
+		trayIcon.setImageAutoSize(true);
+		final SystemTray tray = SystemTray.getSystemTray();
+		try {
+            tray.add(trayIcon);
+        } catch (AWTException e) {
+            System.out.println("Error: Tray 아이콘 생성 중, TrayUI.TrayUI");
+        }
+		
 		JFrame frame = new JFrame();
 		frame.setTitle("JavaKeySender");
 		frame.setSize(390, 75);
-		//frame.setIconImage(iconGIF);
+		frame.setIconImage(iconGIF);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +85,7 @@ public class AppUI {
 		JDialog aboutDialog = new JDialog();
 		aboutDialog.setTitle("정보");
 		aboutDialog.setSize(380, 150);
-		//aboutDialog.setIconImage(iconGIF);
+		aboutDialog.setIconImage(iconGIF);
 		aboutDialog.setResizable(false);
 		aboutDialog.setLocationRelativeTo(null);
 		
@@ -93,7 +105,7 @@ public class AppUI {
 		JFrame settingFrame = new JFrame();
 		settingFrame.setTitle("설정");
 		settingFrame.setSize(400, 450);
-		//settingFrame.setIconImage(iconGIF);
+		settingFrame.setIconImage(iconGIF);
 		settingFrame.setResizable(false);
 		settingFrame.setLocationRelativeTo(null);
 		
