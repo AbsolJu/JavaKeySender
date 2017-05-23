@@ -1,6 +1,9 @@
 package kr.pe.absolju.KeySender;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,10 +13,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 import org.apache.commons.lang3.time.StopWatch;
 
@@ -93,13 +101,27 @@ public class AppUI_Sub {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		
-		frame.setLayout(new FlowLayout(FlowLayout.CENTER));
-
-		JButton makeMacro = new JButton("만들기");
-		JButton sendMacro = new JButton("보내기");
+		frame.setLayout(new BorderLayout());
 		
-		frame.add(makeMacro);
-		//frame.add(sendMacro);
+		DefaultListModel<String> macroListValues = new DefaultListModel<String>();
+		macroListValues.addElement("test");
+		
+		JList<String> macroList = new JList<String>(macroListValues);
+		macroList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		macroList.setLayoutOrientation(JList.VERTICAL);
+		JScrollPane macroListScrollPane = new JScrollPane(macroList);
+		
+		JButton makeMacro = new JButton("새로 만들기");
+		JButton sendMacro = new JButton("보내기");
+		JButton deleteMacro = new JButton("삭제");
+		JPanel macroButtonPanel = new JPanel();
+		macroButtonPanel.setLayout(new GridLayout(0, 3));
+		macroButtonPanel.add(makeMacro);
+		macroButtonPanel.add(sendMacro);
+		macroButtonPanel.add(deleteMacro);
+		
+		frame.add(macroListScrollPane, BorderLayout.CENTER);
+		frame.add(macroButtonPanel, BorderLayout.PAGE_END);
 		frame.setVisible(true);
 		
 		makeMacro.addActionListener(new ActionListener() {
