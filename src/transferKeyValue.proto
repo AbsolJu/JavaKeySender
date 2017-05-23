@@ -15,3 +15,8 @@ message KeyData {
 	bool macro = 2; //check single action or macro action
 	repeated KeyInput keyinput = 3;
 }
+
+message SaveData {
+	repeated string name = 1; //macro's name
+	repeated KeyData keydata = 2; //keydata of a macro
+}

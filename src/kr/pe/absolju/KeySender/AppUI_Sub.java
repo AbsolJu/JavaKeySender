@@ -1,7 +1,6 @@
 package kr.pe.absolju.KeySender;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -21,7 +20,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.apache.commons.lang3.time.StopWatch;
 
@@ -31,6 +33,7 @@ import kr.pe.absolju.KeySender.KeyValueProtos.KeyInput;
 public class AppUI_Sub {
 
 	final static Image iconGIF = Toolkit.getDefaultToolkit().getImage("img/icon2.gif");
+	private static DefaultListModel<String> macroListValues = new DefaultListModel<String>();
 	
 	private static class KeydataBuffer {
 		private KeyData keydata;
@@ -103,17 +106,19 @@ public class AppUI_Sub {
 		
 		frame.setLayout(new BorderLayout());
 		
-		DefaultListModel<String> macroListValues = new DefaultListModel<String>();
-		macroListValues.addElement("test");
-		
-		JList<String> macroList = new JList<String>(macroListValues);
+		//-UI 구성 시작
+		LoadMacroListValues();
+		JList<String> macroList = new JList<String>();
 		macroList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		macroList.setLayoutOrientation(JList.VERTICAL);
+		macroList.setModel(macroListValues);
 		JScrollPane macroListScrollPane = new JScrollPane(macroList);
 		
 		JButton makeMacro = new JButton("새로 만들기");
 		JButton sendMacro = new JButton("보내기");
+		sendMacro.setEnabled(false);
 		JButton deleteMacro = new JButton("삭제");
+		deleteMacro.setEnabled(false);
 		JPanel macroButtonPanel = new JPanel();
 		macroButtonPanel.setLayout(new GridLayout(0, 3));
 		macroButtonPanel.add(makeMacro);
@@ -123,8 +128,22 @@ public class AppUI_Sub {
 		frame.add(macroListScrollPane, BorderLayout.CENTER);
 		frame.add(macroButtonPanel, BorderLayout.PAGE_END);
 		frame.setVisible(true);
+		//-UI 구성 끝
 		
-		makeMacro.addActionListener(new ActionListener() {
+		macroList.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if(macroList.getSelectedIndex() == -1) {
+					sendMacro.setEnabled(false);
+					deleteMacro.setEnabled(false);
+				} else {
+					sendMacro.setEnabled(true);
+					deleteMacro.setEnabled(true);
+				}
+			}
+		});
+		
+		makeMacro.addActionListener(new ActionListener() { //Macro 새로 만들기
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				KeydataBuffer buffer = new KeydataBuffer();
@@ -132,17 +151,34 @@ public class AppUI_Sub {
 				new Thread(new MacroInput(buffer)).start();
 			}
 		});
-		sendMacro.addActionListener(new ActionListener() {
+		sendMacro.addActionListener(new ActionListener() { //JList에서 선택된 항목 보내기
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//수정 필요: 경로 또는 번호를 넘겨줘야 함
-				new Thread(new MacroSend()).start();
+				new Thread(new MacroSend(macroList.getSelectedIndex())).start();
+			}
+		});
+		deleteMacro.addActionListener(new ActionListener() { //JList에서 선택된 항목 삭제
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//macroListValues.remove(macroList.getSelectedIndex());
+				FileIO.DeleteMacro(macroList.getSelectedIndex());
+				LoadMacroListValues();
 			}
 		});
 		
 	}
 	
-	private static class MacroInput implements Runnable {
+	private static void LoadMacroListValues() {
+		FileIO.LoadMacro();
+		
+		//macroListValues에 FileIO에서 불러온 매크로 적용
+		macroListValues.clear();
+		for(int i=0;i<FileIO.getSavedata().getKeydataCount();++i) {
+			macroListValues.addElement(FileIO.getSavedata().getName(i));
+		}
+	}
+	
+	private static class MacroInput implements Runnable { //Macro 새로 만들기 시 입력 받음
 		KeydataBuffer buffer;
 		MacroInput(KeydataBuffer buffer) { this.buffer = buffer; }
 		
@@ -216,25 +252,62 @@ public class AppUI_Sub {
 		}
 	}
 	
-	private static class MacroSave implements Runnable {
+	private static class MacroSave implements Runnable { //Macro 새로 만들기 시 Input이 끝나면 저장
 		KeydataBuffer buffer;
 		MacroSave(KeydataBuffer buffer) { this.buffer=buffer; }
 		
 		@Override
 		public void run() {
-			//아래 문단은 저장으로 바뀌어야 함
-			//현재 전송 확인용 코드
-			new sendKeyValue().multi(buffer.get());
+			//testSave는 String형 이름. 창을 띄워 받아야 함
+			KeyData keydata = buffer.get(); //값을 받아오며, 여기서 MacroInput이 완료되기 전까지 wait 됨.
+			String name;
+			
+			JDialog frame = new JDialog();
+			frame.setTitle("매크로 저장");
+			frame.setSize(200, 75);
+			//frame.setIconImage(iconGIF);
+			frame.setAlwaysOnTop(true);
+			frame.setResizable(false);
+			frame.setLocationRelativeTo(null);
+			
+			frame.setLayout(new FlowLayout(FlowLayout.CENTER));
+			
+			JLabel nameLabel = new JLabel("이름:");
+			JTextField nameField = new JTextField(10);
+			
+			frame.add(nameLabel);
+			frame.add(nameField);
+			frame.setVisible(true);
+			
+			frame.addWindowListener(new WindowListener() {
+				@Override
+				public void windowActivated(WindowEvent arg0) {}
+				@Override
+				public void windowClosed(WindowEvent arg0) {}
+				@Override
+				public void windowClosing(WindowEvent arg0) {
+					FileIO.SaveMacro(nameField.getText(), keydata);
+					LoadMacroListValues();
+				}
+				@Override
+				public void windowDeactivated(WindowEvent arg0) {}
+				@Override
+				public void windowDeiconified(WindowEvent arg0) {}
+				@Override
+				public void windowIconified(WindowEvent arg0) {}
+				@Override
+				public void windowOpened(WindowEvent arg0) {}
+			});
 		}
 	}
 	
-	private static class MacroSend implements Runnable {
-		MacroSend() {
-			
-		}
+	private static class MacroSend implements Runnable { //버튼을 누를 시 선택된 매크로 보내기
+		int macroIndex;
+		MacroSend(int index) { macroIndex = index; }
+		
 		@Override
 		public void run() {
-			//
+			new sendKeyValue().multi(FileIO.getSavedata().getKeydata(macroIndex));
 		}
 	}
 	

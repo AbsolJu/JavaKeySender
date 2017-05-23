@@ -1,6 +1,5 @@
 package kr.pe.absolju.KeySender;
 
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -15,8 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-
 
 public class AppUI {
 	
