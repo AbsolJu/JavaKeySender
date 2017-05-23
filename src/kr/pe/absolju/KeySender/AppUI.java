@@ -1,6 +1,7 @@
 package kr.pe.absolju.KeySender;
 
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Label;
@@ -11,7 +12,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
 
 public class AppUI {
 	
@@ -98,12 +103,36 @@ public class AppUI {
 	public static void SettingFrame() {
 		JFrame settingFrame = new JFrame();
 		settingFrame.setTitle("설정");
-		settingFrame.setSize(400, 450);
+		settingFrame.setSize(230, 130);
 		settingFrame.setIconImage(iconGIF);
 		settingFrame.setResizable(false);
 		settingFrame.setLocationRelativeTo(null);
 		
+		settingFrame.setLayout(new BorderLayout());
+		
+		//설정 목록이 들어가 있는 Panel 생성
+		JPanel optionList = new JPanel();
+		JLabel portLabel = new JLabel("포트 번호:");
+		JLabel addressLabel = new JLabel("보낼 주소:");
+		JTextField portField = new JTextField(10);
+		JTextField addressField = new JTextField(10);
+		
+		optionList.add(addressLabel);
+		optionList.add(addressField);
+		optionList.add(portLabel);
+		optionList.add(portField);
+		
+		
+		//확인 버튼
+		JButton ok = new JButton("OK");
+		
+		//설정 목록과 확인 버튼 삽입
+		settingFrame.add(optionList, BorderLayout.CENTER);
+		settingFrame.add(ok, BorderLayout.PAGE_END);
+		
 		settingFrame.setVisible(true);
+		
 	}
-	
 }
+	
+	
