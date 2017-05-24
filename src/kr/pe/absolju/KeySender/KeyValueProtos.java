@@ -2729,6 +2729,572 @@ public final class KeyValueProtos {
 
   }
 
+  public interface SaveSettingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:KeySender.SaveSetting)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string address = 1;</code>
+     */
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
+
+    /**
+     * <code>int32 portNumber = 2;</code>
+     */
+    int getPortNumber();
+  }
+  /**
+   * Protobuf type {@code KeySender.SaveSetting}
+   */
+  public  static final class SaveSetting extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:KeySender.SaveSetting)
+      SaveSettingOrBuilder {
+    // Use SaveSetting.newBuilder() to construct.
+    private SaveSetting(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SaveSetting() {
+      address_ = "";
+      portNumber_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private SaveSetting(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              address_ = s;
+              break;
+            }
+            case 16: {
+
+              portNumber_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return kr.pe.absolju.KeySender.KeyValueProtos.internal_static_KeySender_SaveSetting_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return kr.pe.absolju.KeySender.KeyValueProtos.internal_static_KeySender_SaveSetting_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting.class, kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting.Builder.class);
+    }
+
+    public static final int ADDRESS_FIELD_NUMBER = 1;
+    private volatile java.lang.Object address_;
+    /**
+     * <code>string address = 1;</code>
+     */
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORTNUMBER_FIELD_NUMBER = 2;
+    private int portNumber_;
+    /**
+     * <code>int32 portNumber = 2;</code>
+     */
+    public int getPortNumber() {
+      return portNumber_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
+      }
+      if (portNumber_ != 0) {
+        output.writeInt32(2, portNumber_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
+      }
+      if (portNumber_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, portNumber_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting)) {
+        return super.equals(obj);
+      }
+      kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting other = (kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting) obj;
+
+      boolean result = true;
+      result = result && getAddress()
+          .equals(other.getAddress());
+      result = result && (getPortNumber()
+          == other.getPortNumber());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
+      hash = (37 * hash) + PORTNUMBER_FIELD_NUMBER;
+      hash = (53 * hash) + getPortNumber();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code KeySender.SaveSetting}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:KeySender.SaveSetting)
+        kr.pe.absolju.KeySender.KeyValueProtos.SaveSettingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return kr.pe.absolju.KeySender.KeyValueProtos.internal_static_KeySender_SaveSetting_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return kr.pe.absolju.KeySender.KeyValueProtos.internal_static_KeySender_SaveSetting_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting.class, kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting.Builder.class);
+      }
+
+      // Construct using kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        address_ = "";
+
+        portNumber_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return kr.pe.absolju.KeySender.KeyValueProtos.internal_static_KeySender_SaveSetting_descriptor;
+      }
+
+      public kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting getDefaultInstanceForType() {
+        return kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting.getDefaultInstance();
+      }
+
+      public kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting build() {
+        kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting buildPartial() {
+        kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting result = new kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting(this);
+        result.address_ = address_;
+        result.portNumber_ = portNumber_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting) {
+          return mergeFrom((kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting other) {
+        if (other == kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting.getDefaultInstance()) return this;
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
+        }
+        if (other.getPortNumber() != 0) {
+          setPortNumber(other.getPortNumber());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object address_ = "";
+      /**
+       * <code>string address = 1;</code>
+       */
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string address = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 1;</code>
+       */
+      public Builder setAddress(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        address_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 1;</code>
+       */
+      public Builder clearAddress() {
+        
+        address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 1;</code>
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int portNumber_ ;
+      /**
+       * <code>int32 portNumber = 2;</code>
+       */
+      public int getPortNumber() {
+        return portNumber_;
+      }
+      /**
+       * <code>int32 portNumber = 2;</code>
+       */
+      public Builder setPortNumber(int value) {
+        
+        portNumber_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 portNumber = 2;</code>
+       */
+      public Builder clearPortNumber() {
+        
+        portNumber_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:KeySender.SaveSetting)
+    }
+
+    // @@protoc_insertion_point(class_scope:KeySender.SaveSetting)
+    private static final kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting();
+    }
+
+    public static kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SaveSetting>
+        PARSER = new com.google.protobuf.AbstractParser<SaveSetting>() {
+      public SaveSetting parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SaveSetting(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SaveSetting> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SaveSetting> getParserForType() {
+      return PARSER;
+    }
+
+    public kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_KeySender_KeyInput_descriptor;
   private static final 
@@ -2744,6 +3310,11 @@ public final class KeyValueProtos {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_KeySender_SaveData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_KeySender_SaveSetting_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_KeySender_SaveSetting_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2758,9 +3329,10 @@ public final class KeyValueProtos {
       "press\030\003 \001(\010\"Q\n\007KeyData\022\020\n\010senderid\030\001 \001(\t" +
       "\022\r\n\005macro\030\002 \001(\010\022%\n\010keyinput\030\003 \003(\0132\023.KeyS" +
       "ender.KeyInput\"=\n\010SaveData\022\014\n\004name\030\001 \003(\t" +
-      "\022#\n\007keydata\030\002 \003(\0132\022.KeySender.KeyDataB)\n" +
-      "\027kr.pe.absolju.KeySenderB\016KeyValueProtos" +
-      "b\006proto3"
+      "\022#\n\007keydata\030\002 \003(\0132\022.KeySender.KeyData\"2\n" +
+      "\013SaveSetting\022\017\n\007address\030\001 \001(\t\022\022\n\nportNum" +
+      "ber\030\002 \001(\005B)\n\027kr.pe.absolju.KeySenderB\016Ke" +
+      "yValueProtosb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2792,6 +3364,12 @@ public final class KeyValueProtos {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_KeySender_SaveData_descriptor,
         new java.lang.String[] { "Name", "Keydata", });
+    internal_static_KeySender_SaveSetting_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_KeySender_SaveSetting_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_KeySender_SaveSetting_descriptor,
+        new java.lang.String[] { "Address", "PortNumber", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

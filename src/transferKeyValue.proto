@@ -20,3 +20,8 @@ message SaveData {
 	repeated string name = 1; //macro's name
 	repeated KeyData keydata = 2; //keydata of a macro
 }
+
+message SaveSetting {
+	string address = 1;
+	int32 portNumber = 2;
+}

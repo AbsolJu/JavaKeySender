@@ -260,7 +260,6 @@ public class AppUI_Sub {
 		public void run() {
 			//testSave는 String형 이름. 창을 띄워 받아야 함
 			KeyData keydata = buffer.get(); //값을 받아오며, 여기서 MacroInput이 완료되기 전까지 wait 됨.
-			String name;
 			
 			JDialog frame = new JDialog();
 			frame.setTitle("매크로 저장");

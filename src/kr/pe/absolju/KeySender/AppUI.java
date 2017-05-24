@@ -112,7 +112,9 @@ public class AppUI {
 		JLabel portLabel = new JLabel("포트 번호:");
 		JLabel addressLabel = new JLabel("보낼 주소:");
 		JTextField portField = new JTextField(10);
+		portField.setText(String.valueOf(FileIO.getSocketNumber()));
 		JTextField addressField = new JTextField(10);
+		addressField.setText(FileIO.getAddressName());
 		
 		optionList.add(addressLabel);
 		optionList.add(addressField);
@@ -129,6 +131,14 @@ public class AppUI {
 		
 		settingFrame.setVisible(true);
 		
+		
+		ok.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FileIO.SaveSetting(addressField.getText(), Integer.parseInt(portField.getText()));
+				FileIO.LoadSetting();
+			}
+		});
 	}
 }
 	

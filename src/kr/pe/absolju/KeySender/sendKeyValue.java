@@ -28,7 +28,7 @@ public class sendKeyValue {
 		
 		//클라이언트 파트(클라이언트에서 서버로 키 값 전달)
 		try {
-			Socket socket = new Socket("localhost", 8080);
+			Socket socket = new Socket(FileIO.getAddressName(), FileIO.getSocketNumber());
 			DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 			keydata.build().writeTo(output);
 			socket.close();
@@ -39,7 +39,7 @@ public class sendKeyValue {
 	
 	public void multi(KeyData keydata) {
 		try {
-			Socket socket = new Socket("localhost", 8080);
+			Socket socket = new Socket(FileIO.getAddressName(), FileIO.getSocketNumber());
 			DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 			keydata.writeTo(output);
 			socket.close();

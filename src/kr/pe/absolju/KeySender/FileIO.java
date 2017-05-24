@@ -9,21 +9,70 @@ import java.io.IOException;
 
 import kr.pe.absolju.KeySender.KeyValueProtos.KeyData;
 import kr.pe.absolju.KeySender.KeyValueProtos.SaveData;
+import kr.pe.absolju.KeySender.KeyValueProtos.SaveSetting;
 
 public class FileIO {
 	private static String macroFileName = "JKSmacro.dat";
 	private static String settingFileName = "JKSset.dat";
+	
 	private static SaveData savedata;
 	public static SaveData getSavedata() {
 		return savedata;
 	}
-
-	public static void SaveSetting() {
+	
+	private static String addressName = "localhost"; //첫 실행 후 설정해야 함
+	private static int socketNumber = 8080; //초기값
+	public static String getAddressName() {
+		return addressName;
+	}
+	public static void setAddressName(String addressName) {
+		FileIO.addressName = addressName;
+	}
+	public static int getSocketNumber() {
+		return socketNumber;
+	}
+	public static void setSocketNumber(int socketNumber) {
+		FileIO.socketNumber = socketNumber;
+	}
+	
+	
+	public static void SaveSetting(String address, int socketNumber) {
+		SaveSetting.Builder savesetTemp = SaveSetting.newBuilder();
 		
+		//불러오기
+		savesetTemp.setAddress(address);
+		savesetTemp.setPortNumber(socketNumber);
+		
+		//저장
+		BufferedOutputStream buffer = null;
+		try {
+			buffer = new BufferedOutputStream(new FileOutputStream(settingFileName));
+			savesetTemp.build().writeTo(buffer);
+		} catch (FileNotFoundException e) {
+			System.out.println("Error: 파일 생성 중 오류, FileIO.SaveSetting");
+		} catch (IOException e) {
+			System.out.println("Error: 파일 쓰는 중 오류, FileIO.SaveSetting");
+		} finally {
+			if(buffer!=null) {
+				try {
+					buffer.close();
+				} catch (IOException e) {
+					System.out.println("Error: 파일 닫는 중 오류, FileIO.SaveSetting");
+				}
+			}
+		}
 	}
 	
 	public static void LoadSetting() {
-		
+		try {
+			BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(settingFileName));
+			SaveSetting setting = SaveSetting.parseFrom(buffer);
+			addressName = setting.getAddress();
+			socketNumber = setting.getPortNumber();
+		} catch (IOException e) {
+			System.out.println("Error: 설정 파일이 없거나 읽는 중 오류, 초기화 필요, FileIO.LoadSetting");
+			SaveSetting(addressName, socketNumber);
+		}
 	}
 	
 	public static void SaveMacro(String name, KeyData keydata) {
