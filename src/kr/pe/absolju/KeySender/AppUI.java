@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +18,8 @@ import javax.swing.JTextField;
 
 public class AppUI {
 	
-	final static Image iconGIF = Toolkit.getDefaultToolkit().getImage("img/icon2.gif");
+	final static URL imageUrl = ClassLoader.getSystemResource("kr/pe/absolju/KeySender/img/icon2.gif");
+	final static Image iconGIF = Toolkit.getDefaultToolkit().getImage(imageUrl);
 	
 	public static void Create() {
 		
@@ -79,8 +81,6 @@ public class AppUI {
 	
 	public static void AboutDialog() {
 		JDialog aboutDialog = new JDialog();
-		ImageIcon image1;
-		image1 = new ImageIcon("img/icon2.GIF");
 		
 		aboutDialog.setTitle("Á¤º¸");
 		aboutDialog.setSize(380, 150);
@@ -91,7 +91,7 @@ public class AppUI {
 		aboutDialog.setLayout(new BorderLayout());
 		
 		JLabel M1 = new JLabel("<html>Protocol Buffer<br>Java KeyPresser&Sender<br></html>");
-		JLabel M2 = new JLabel(image1);
+		JLabel M2 = new JLabel(new ImageIcon(imageUrl));
 		aboutDialog.add(M1,BorderLayout.CENTER);
 		aboutDialog.add(M2,BorderLayout.WEST);
 		

@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.net.URL;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -32,7 +33,8 @@ import kr.pe.absolju.KeySender.KeyValueProtos.KeyInput;
 
 public class AppUI_Sub {
 
-	final static Image iconGIF = Toolkit.getDefaultToolkit().getImage("img/icon2.gif");
+	final static URL imageUrl = ClassLoader.getSystemResource("kr/pe/absolju/KeySender/img/icon2.gif");
+	final static Image iconGIF = Toolkit.getDefaultToolkit().getImage(imageUrl);
 	private static DefaultListModel<String> macroListValues = new DefaultListModel<String>();
 	
 	private static class KeydataBuffer {
